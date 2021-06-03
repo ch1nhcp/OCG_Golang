@@ -33,8 +33,7 @@ func main() {
 		fmt.Println(product)
 	}
 
-	fmt.Println("-------------------------------------------")
-	fmt.Println("------Sắp xếp theo giá cao nhất--------")
+		fmt.Println("------Sắp xếp theo giá cao nhất--------")
 	sortedProducts := products[:]
 	sort.Slice(sortedProducts, func(i, j int) bool {
 		return sortedProducts[i].Price > sortedProducts[j].Price

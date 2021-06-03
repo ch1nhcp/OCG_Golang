@@ -64,7 +64,7 @@ func main() {
 	fmt.Println("Enter max value: ")
 	fmt.Scanln(&max)
 	for _, product := range products {
-		if product.Price >= min && product.Price <= max{
+		if product.Price >= min && product.Price <= max {
 			fmt.Println(product)
 		}
 	}
