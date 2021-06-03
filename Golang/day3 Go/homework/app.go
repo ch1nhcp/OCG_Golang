@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math/rand"
+	"os"
 	"time"
 )
 
@@ -15,10 +17,6 @@ type Product struct {
 func randomInt(min int, max int) int {
 	return rand.Intn(max-min+1) + min
 }
-
-// func showList() string {
-
-// }
 
 func main() {
 	category := [4]string{"fashion", "electronics", "sport", "food"}
@@ -38,11 +36,12 @@ func main() {
 	}
 
 	// Gõ vào từ bàn phím tên một sản phẩm, trả về danh sách tìm được
-	fmt.Println("Enter name: ")
-	var searchByName string
-	fmt.Scanln(&searchByName)
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter product name: ")
+	text, _, _ := reader.ReadLine()
+	s := string(text)
 	for _, product := range products {
-		if product.Name == searchByName {
+		if product.Name == s {
 			fmt.Println(product)
 		}
 	}
