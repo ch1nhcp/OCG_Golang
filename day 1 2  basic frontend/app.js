@@ -1,7 +1,7 @@
 //● Bài 1: Viết hàm tính thể tích hình cầu, với tham số truyền vào là bán kính của hình cầu.
 
 const sphereVolume = (r) => {
-  console.log((4 / 3) * Math.PI * r ** 3);
+  return (4 / 3) * Math.PI * r ** 3;
 };
 
 console.log(sphereVolume(5)); //Test
@@ -12,7 +12,9 @@ tham số 3 và 8 ta có kết quả là 22 (bằng 4 + 5 + 6 + 7)*/
 const getSum = (a, b) => {
   if (a == b) return 0;
   let sum = 0;
-  for (i = a < b ? a + 1 : b + 1; i < (a < b ? b : a); i++) sum += i;
+  let greater = a < b ? b : a;
+  let smaller = a < b ? a : b;
+  for (let i = smaller + 1; i < greater; i++) sum += i;
   return sum;
 };
 console.log(getSum(3, 8)); //test
@@ -26,7 +28,7 @@ const sumDivisors = (num) => {
       sum += i;
     }
   }
-  console.log(sum);
+  return sum;
 };
 
 console.log(sumDivisors(12)); //test
@@ -35,10 +37,9 @@ console.log(sumDivisors(12)); //test
 trả về true hoặc false */
 
 const isPrime = (num) => {
-  for (let i = 2; i < Math.sqrt(num); i++) if (num % i === 0) return false;
+  for (let i = 2; i < num; i++) if (num % i === 0) return false;
   return num > 1;
 };
-
 console.log(isPrime(5)); //test
 
 /* Bài 5: Cho 1 số nguyên dương bất kỳ. Tính tổng tất cả các số nguyên tố nhỏ hơn hoặc bằng tham số
@@ -52,7 +53,7 @@ const sumPrime = (num) => {
   return sum;
 };
 
-console.log(sumPrime(5)); //test
+console.log(sumPrime(8)); //test
 
 //=======================================================================
 // Xử lý chuỗi
@@ -188,9 +189,9 @@ const matrix = (m, n) => {
     result[a].reverse();
     console.log(result[a]);
   }
-  console.log(result);
+  return result;
 };
-matrix(3, 4); //test
+console.log(matrix(3, 4)); //test
 //=======================================================================
 // Xử lý object
 // ● Bài 1: Cho 1 mảng các object chứa thông tin sinh viên dạng { name: ''Huy'', age: 20 }. Viết hàm tính ra
@@ -206,7 +207,7 @@ const avgAge = (arr) => {
 let arrr = [
   { name: "an", age: 20 },
   { name: "chi", age: 28 },
-  { name: "hinh", age: 22 },
+  { name: "huy", age: 22 },
 ];
 console.log(avgAge(arrr)); //test
 
@@ -267,9 +268,9 @@ const time = (str, x) => {
   if (seconds < 10) {
     seconds = "0" + seconds;
   }
-  return hours + ":" + minutes + ":" + seconds;
+  return (hours >= 24 ? (hours -= 24) : hours) + ":" + minutes + ":" + seconds;
 };
-console.log(time("09:20:56", 7));
+console.log(time("23:59:56", 1000));
 
 // ● Bài 2: Một con ốc sên leo từ đáy giếng lên miệng giếng, biết ban ngày leo được x mét, ban đêm lại
 // bị tụt xuống y mét, hỏi sau bao nhiêu ngày thì ốc sên sẽ lên được đến miệng giếng. Viết hàm giải
@@ -277,6 +278,10 @@ console.log(time("09:20:56", 7));
 const timeCal = (x, y, h) => {
   let days = 0,
     pos = 0;
+  if (x <= y && x < h) return console.log("Khong the treo len");
+  if (x >= h) {
+    return (days = 1);
+  }
   while (1) {
     days++;
     pos += x;
@@ -285,7 +290,7 @@ const timeCal = (x, y, h) => {
   }
   return days;
 };
-console.log(timeCal(3, 2, 10)); //test
+console.log(timeCal(10, 10, 10)); //test
 
 //test h = 12m , x = 3m, y = 2m
 // ● Bài 3: Cho 1 số nguyên dương, hãy viết hàm sắp xếp lại các chữ số trong số nguyên đó sao cho ra
